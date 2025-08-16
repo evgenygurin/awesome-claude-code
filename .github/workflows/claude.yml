@@ -32,56 +32,16 @@ jobs:
 
       - name: Run Claude Code
         id: claude
-        uses: anthropics/claude-code-action@beta
+        uses: anthropics/claude-code-action@v0.0.58
         with:
-          # Authentication configuration
+          # Use stable parameters for v0.0.58
           anthropic_api_key: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          
-          # Mode for interactive PR/issue assistance
-          mode: "agent"
           
           # Allow bots to trigger Claude
           allowed_bots: "codegen-sh,dependabot,renovate"
           
-          # Trigger configuration
-          trigger_phrase: "@claude"
-          assignee_trigger: "claude-assistant"
-          label_trigger: "claude"
           
-          
-          # Base branch for new feature branches
-          base_branch: "main"
-          
-          # Branch prefix for Claude-created branches
-          branch_prefix: "claude/"
-          
-          # Maximum conversation turns
-          max_turns: 10
-          
-          # Timeout in minutes
-          timeout_minutes: 15
-          
-          # Optional: Specify model (defaults to Claude Sonnet 4)
-          # model: "claude-opus-4-1-20250805"
-          
-          # Custom instructions for project-specific behavior
+          # Optional: Custom instructions for this repository
           custom_instructions: |
-            You are a helpful AI assistant for this awesome-claude-code repository.
-            
-            Project Guidelines:
-            - This is a curated collection of Claude Code resources and examples
-            - Follow Markdown best practices for documentation
-            - Ensure all links are valid and accessible
-            - Add appropriate tags and categories for new resources
-            - Maintain consistent formatting across all files
-            - Test any code examples before adding them
-            
-            When helping with issues or PRs:
-            - Be thorough in your analysis
-            - Provide specific, actionable suggestions
-            - Include relevant examples when possible
-            - Follow the existing project structure and conventions
-          
-          # Optional: Tools Claude can use
-          # allowed_tools: "Bash(git status),Bash(git diff),Read,Write,Edit,Grep,LS"
+            You are assisting with the awesome-claude-code repository.
+            Follow Markdown best practices and maintain consistency.
